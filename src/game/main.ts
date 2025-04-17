@@ -37,11 +37,43 @@ const config: Phaser.Types.Core.GameConfig = {
         BigMap
     ]
 };
-
+const config2: Phaser.Types.Core.GameConfig = {
+    type: AUTO,
+    fps: {
+        limit: 60
+    },
+    scale: {
+        mode: Phaser.Scale.FIT,
+        autoCenter: Phaser.Scale.CENTER_BOTH,
+        width: 1080,
+        height: 1920,
+        min: {
+            width: 540,
+            height: 960
+        },
+        
+    },
+    parent: 'game-container',
+    backgroundColor: '#028af8',
+    scene: [
+        Boot,
+        Preloader,
+        MainMenu,
+        MainGame,
+        GameOver,
+        PreloaderNext,
+        BigMap
+    ]
+};
 const StartGame = (parent: string) => {
 
-    return new Game({ ...config, parent });
+    // simple mobile detection (UA sniff)
+    const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    console.log('isMobile', isMobile);
+    // choose config based on device
+    const gameConfig = isMobile ? config2 : config;
 
+    return new Game({ ...gameConfig, parent });
 }
 
 export default StartGame;
