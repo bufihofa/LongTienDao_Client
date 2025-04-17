@@ -36,10 +36,10 @@ export class MainMenu extends Scene
     {
         this.background = this.add.image(this.w/2, this.h/2, 'background').setDisplaySize(this.w, this.h).setAlpha(0);
         this.add.image(this.w/2, this.h/2, 'map_paper').setDisplaySize(this.w, this.h);
-        this.map.push(this.add.image(1500, 300, 'map_1').setScale(0.55));
-        this.map.push(this.add.image(960, 500, 'map_2').setScale(0.55).setAlpha(0.4));
-        this.map.push(this.add.image(1450, 800, 'map_3').setScale(0.55).setAlpha(0.4));
-        this.map.push(this.add.image(380, 400, 'map_4').setScale(0.55).setAlpha(0.4));
+        this.map.push(this.add.image(1500, 300, 'map_0').setScale(0.55));
+        this.map.push(this.add.image(960, 500, 'map_1').setScale(0.55).setAlpha(0.4));
+        this.map.push(this.add.image(1450, 800, 'map_2').setScale(0.55).setAlpha(0.4));
+        this.map.push(this.add.image(380, 400, 'map_3').setScale(0.55).setAlpha(0.4));
 
         this.map[0].setInteractive({ pixelPerfect: true });
         this.map[0].setData('baseScale', 0.55); // Initialize recoil state
@@ -52,6 +52,10 @@ export class MainMenu extends Scene
             duration: fadeInDuration,
             ease: 'Linear',
         });
+
+        for(let i = 1; i <= 100; i++){
+            this.add.image(200 + (i % 10) * 80, 100 + Math.ceil(i / 10) * 80, `item_${i}`).setDisplaySize(70, 70).setDepth(1);
+        }
     }
 
     createLogo()
@@ -61,7 +65,7 @@ export class MainMenu extends Scene
         for(let i = 0; i < 5; i++){
             const charX = 200 + 200 * (i % 3);
             const charY = 200 + 400 * Math.floor(i / 3)// Adjust Y positioning
-            const char = this.add.image(charX, charY, `agent_${i+1}`).setDepth(100).setScale(0.4);
+            const char = this.add.image(charX, charY, `agent_${i+1}`).setDepth(100).setScale(0.4).setDepth(5);
             char.setInteractive({ pixelPerfect: true });
             this.setupLogoInteractions(char); // Pass the created character
             this.createLogoFloatingEffect(char); // Pass the created character

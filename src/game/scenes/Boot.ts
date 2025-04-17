@@ -136,6 +136,9 @@ export class Boot extends Scene
                 images.push({ key: `building_${build}_${i}`, file: `assets/building/${build}_${i}.png` });
             }
         }
+        for(let i = 1; i <= 100; i++){
+            images.push({ key: `item_${i}`, file: `assets/item/Item (${i}).png` });
+        }
         //console.log("Images to load", images);
         //let imagesToLoad: any[] = [];
         let maxCount = images.length;
