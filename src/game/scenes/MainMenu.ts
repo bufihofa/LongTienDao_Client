@@ -11,7 +11,7 @@ export class MainMenu extends Scene
     logoTween: Phaser.Tweens.Tween | null;
     w: number = 1920;
     h: number = 1080;
-
+    sfx: Phaser.Sound.BaseSound | null = null;
     map: GameObjects.Image[] = [];
 
     constructor ()
@@ -21,6 +21,11 @@ export class MainMenu extends Scene
 
     create ()
     {
+        this.sfx = this.sound.add('bg2_maincity');
+        this.sfx?.play({
+            loop: true,
+            volume: 0.5
+        });
         console.log('MainMenu scene created');
         this.character = [];
         this.logoTween = null;
@@ -63,10 +68,11 @@ export class MainMenu extends Scene
         console.log("RENDER");
         // Create characters on the left
         for(let i = 0; i < 5; i++){
-            const charX = 200 + 200 * (i % 3);
-            const charY = 200 + 400 * Math.floor(i / 3)// Adjust Y positioning
-            const char = this.add.image(charX, charY, `agent_${i+1}`).setDepth(100).setScale(0.4).setDepth(5);
+            const charX = 200 + 350 * (i % 3);
+            const charY = 200 + 450 * Math.floor(i / 3)// Adjust Y positioning
+            const char = this.add.image(charX, charY, `agent_${i+3}`).setDepth(100).setScale(0.4).setDepth(5);
             char.setInteractive({ pixelPerfect: true });
+            char.setData('baseScale', 0.4); // Initialize recoil state
             this.setupLogoInteractions(char); // Pass the created character
             this.createLogoFloatingEffect(char); // Pass the created character
             this.character.push(char); // Add to the array
@@ -78,6 +84,7 @@ export class MainMenu extends Scene
             const charY = 200 + 300 * Math.floor(i / 3) ; // Adjust Y positioning
             const char = this.add.image(charX, charY, `monster_ho_${i}`).setDepth(100).setScale(0.7);
             char.setInteractive({ pixelPerfect: true });
+            char.setData('baseScale', 0.7); // Initialize recoil state
             this.setupLogoInteractions(char); // Pass the created character
             this.createLogoFloatingEffect(char); // Pass the created character
             this.character.push(char); // Add to the array

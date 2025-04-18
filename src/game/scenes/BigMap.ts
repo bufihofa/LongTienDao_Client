@@ -47,9 +47,9 @@ export class BigMap extends Scene
     }
     drawMap(){
         this.map.push(this.add.image(1500, 300, 'map_0').setScale(0.55));
-        this.map.push(this.add.image(960, 500, 'map_1').setScale(0.55).setAlpha(0.4));
-        this.map.push(this.add.image(1450, 800, 'map_2').setScale(0.55).setAlpha(0.4));
-        this.map.push(this.add.image(380, 400, 'map_3').setScale(0.55).setAlpha(0.4));
+        //this.map.push(this.add.image(960, 500, 'map_1').setScale(0.55).setAlpha(0.4));
+        //this.map.push(this.add.image(1450, 800, 'map_2').setScale(0.55).setAlpha(0.4));
+        //this.map.push(this.add.image(380, 400, 'map_3').setScale(0.55).setAlpha(0.4));
 
         this.map[0].setInteractive({ pixelPerfect: true });        
         //this.addHoverEffect(this.map[0], 0, 0.55);
@@ -58,12 +58,12 @@ export class BigMap extends Scene
             console.log("Map clicked ", 0);
             this.gameData.currentMap = 0;
             this.sfx?.stop();
-            this.scene.start('Map');
+            this.scene.start('MainMenu');
         });
         this.addHoverEffect(this.map[0], 0, 0.55);
-        this.addHoverEffect(this.map[1], 1, 0.55);
-        this.addHoverEffect(this.map[2], 2, 0.55);
-        this.addHoverEffect(this.map[3], 3, 0.55);
+        //this.addHoverEffect(this.map[1], 1, 0.55);
+        //this.addHoverEffect(this.map[2], 2, 0.55);
+        //this.addHoverEffect(this.map[3], 3, 0.55);
         console.log(this.registry.get('map2'));
     }
     
