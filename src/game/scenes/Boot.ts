@@ -141,7 +141,11 @@ export class Boot extends Scene
         }
         //console.log("Images to load", images);
         //let imagesToLoad: any[] = [];
-        let maxCount = images.length;
+        const audios = [
+            { key: 'bg1_login', file: 'audio/bg1_login.mp3' }
+        ];
+        
+        let maxCount = images.length + audios.length;
         let count = 0;
         for(const img of images) {
             const savedImage = await this.loadImageFromIndexedDB(img.key);
@@ -182,6 +186,32 @@ export class Boot extends Scene
                     if(count >= maxCount){
                         this.scene.start('BigMap');
                     }
+                });
+            }
+        }
+        for(const audio of audios) {
+            const saved = await this.loadImageFromIndexedDB(audio.key);
+            if(!saved){
+                this.load.binary(audio.key, audio.file, Uint8Array);
+                this.load.audio(audio.key, audio.file);
+                this.load.on(`filecomplete-binary-${audio.key}`, async () => {
+                    await this.saveImageToIndexedDB(audio.key);
+                    count++;
+                    if(count >= maxCount) this.scene.start('BigMap');
+                });
+            } else {
+                const arrayBuffer = (saved.value as ArrayBuffer);
+                const blob = new Blob([arrayBuffer], { type: 'audio/mpeg' });
+                const url = URL.createObjectURL(blob);
+                
+                
+                this.load.audio(audio.key, url);
+                this.load.once(`filecomplete-audio-${audio.key}`, () => {
+                    // Clean up the object URL after loading
+                    URL.revokeObjectURL(url);
+                    
+                    count++;
+                    if(count >= maxCount) this.scene.start('BigMap');
                 });
             }
         }

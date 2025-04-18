@@ -5,6 +5,7 @@ export default class Data {
     db: IDBDatabase | null;
     dbName: string;
     dbVersion: number;
+    currentMap: number;
     
     private constructor() {}
     public static getInstance(): Data {

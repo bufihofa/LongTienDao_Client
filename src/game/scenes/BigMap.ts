@@ -1,4 +1,5 @@
 import { GameObjects, Scene } from "phaser";
+import Data from "./Data";
 
 export class BigMap extends Scene
 {
@@ -6,13 +7,30 @@ export class BigMap extends Scene
     w: number = 1920;
     h: number = 1080;
     map: GameObjects.Image[] = [];
-    
+    gameData: Data = Data.getInstance();
     hoving: number = -1;
+    sfx: Phaser.Sound.BaseSound | null = null;
     constructor ()
     {
         super('BigMap');
     }
+    init(){
+        console.log('init BigMap scene');
+    }
+    preload(){
+        console.log('preload BigMap scene');
+    }
     create(){
+        this.sfx = this.sound.add('bg1_login');
+        // Enable sound to play when not in active tab
+        this.sound.pauseOnBlur = false;
+
+        // Loop sfx
+        this.sfx.play({
+            loop: true,
+            volume: 0.5
+        });
+
         this.background = null;
         this.map = [];
         this.hoving = -1;
@@ -35,24 +53,24 @@ export class BigMap extends Scene
 
         this.map[0].setInteractive({ pixelPerfect: true });        
         //this.addHoverEffect(this.map[0], 0, 0.55);
-        
+        this.data.set('map2', 32);
         this.map[0].on('pointerdown', () => {
             console.log("Map clicked ", 0);
+            this.gameData.currentMap = 0;
+            this.sfx?.stop();
             this.scene.start('MainMenu');
         });
         this.addHoverEffect(this.map[0], 0, 0.55);
         this.addHoverEffect(this.map[1], 1, 0.55);
         this.addHoverEffect(this.map[2], 2, 0.55);
         this.addHoverEffect(this.map[3], 3, 0.55);
+        console.log(this.registry.get('map2'));
     }
     
     addHoverEffect(image: GameObjects.Image, mapType: number, baseScale: number) {
         image.setInteractive({ pixelPerfect: true });
         image.setData('baseScale', baseScale);
-        image.on('pointerdown', () => {
-            console.log("Map clicked ", mapType);
-            this.scene.start('MainMenu');
-        });
+        
 
 
         image.on('pointerover', () => {

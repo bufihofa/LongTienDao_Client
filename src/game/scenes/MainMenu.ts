@@ -28,7 +28,7 @@ export class MainMenu extends Scene
         this.createBackground();
         this.createLogo();
         //this.createTitle();
-
+        console.log("hehe " , this.data.get('map2'));
         EventBus.emit('current-scene-ready', this);
     }
 
