@@ -8,6 +8,6 @@ export default defineConfig({
         react(),
     ],
     server: {
-        port: 7031,
+        port: 7036,
     }
 })

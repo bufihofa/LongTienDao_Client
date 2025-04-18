@@ -24,13 +24,13 @@ export class BigMap extends Scene
         this.sfx = this.sound.add('bg1_login');
         // Enable sound to play when not in active tab
         this.sound.pauseOnBlur = false;
-
         // Loop sfx
-        this.sfx.play({
+        this.sfx?.play({
             loop: true,
             volume: 0.5
         });
-
+        
+        console.log('create BigMap scene');
         this.background = null;
         this.map = [];
         this.hoving = -1;
@@ -58,7 +58,7 @@ export class BigMap extends Scene
             console.log("Map clicked ", 0);
             this.gameData.currentMap = 0;
             this.sfx?.stop();
-            this.scene.start('MainMenu');
+            this.scene.start('Map');
         });
         this.addHoverEffect(this.map[0], 0, 0.55);
         this.addHoverEffect(this.map[1], 1, 0.55);

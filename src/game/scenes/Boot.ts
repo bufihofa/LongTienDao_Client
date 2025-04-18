@@ -142,7 +142,11 @@ export class Boot extends Scene
         //console.log("Images to load", images);
         //let imagesToLoad: any[] = [];
         const audios = [
-            { key: 'bg1_login', file: 'audio/bg1_login.mp3' }
+            { key: 'bg1_login', file: 'audio/bg1_login.mp3' },
+            { key: 'bg2_maincity', file: 'audio/bg2_maincity.mp3' },
+
+            //{ key: 'bg2_maincity', file: 'audio/bg2_maincity.mp3' },
+            //{ key: 'bg5_battle', file: 'audio/bg5_battle.mp3' },
         ];
         
         let maxCount = images.length + audios.length;
@@ -157,8 +161,17 @@ export class Boot extends Scene
 
                 this.load.on(`filecomplete-binary-${img.key}`,  async () => {
                     await this.saveImageToIndexedDB(img.key);
+                    //count++;
+                    //console.log(count, maxCount);
+                    //if(count == maxCount){
+                    //    this.scene.start('MainMenu');
+                    //}
+                });
+                this.load.on(`filecomplete-image-${img.key}`,  async () => {
+                    await this.saveImageToIndexedDB(img.key);
                     count++;
-                    if(count >= maxCount){
+                    console.log(count, maxCount);
+                    if(count == maxCount){
                         this.scene.start('MainMenu');
                     }
                 });
@@ -183,7 +196,8 @@ export class Boot extends Scene
                     imageBitmap.close(); // Release the bitmap
                     
                     count++;
-                    if(count >= maxCount){
+                    console.log(count, maxCount);
+                    if(count == maxCount){
                         this.scene.start('BigMap');
                     }
                 });
@@ -196,8 +210,15 @@ export class Boot extends Scene
                 this.load.audio(audio.key, audio.file);
                 this.load.on(`filecomplete-binary-${audio.key}`, async () => {
                     await this.saveImageToIndexedDB(audio.key);
+                    //count++;
+                    //console.log(count, maxCount);
+                    //if(count == maxCount) this.scene.start('BigMap');
+                });
+                // Wait for audio to fully load before incrementing count
+                this.load.once(`filecomplete-audio-${audio.key}`, () => {
                     count++;
-                    if(count >= maxCount) this.scene.start('BigMap');
+                    console.log(count, maxCount);
+                    if(count == maxCount) this.scene.start('BigMap');
                 });
             } else {
                 const arrayBuffer = (saved.value as ArrayBuffer);
@@ -209,9 +230,9 @@ export class Boot extends Scene
                 this.load.once(`filecomplete-audio-${audio.key}`, () => {
                     // Clean up the object URL after loading
                     URL.revokeObjectURL(url);
-                    
                     count++;
-                    if(count >= maxCount) this.scene.start('BigMap');
+                    console.log(count, maxCount);
+                    if(count == maxCount) this.scene.start('BigMap');
                 });
             }
         }

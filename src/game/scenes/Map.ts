@@ -9,7 +9,7 @@ export class Map extends Scene
     w: number = 1920;
     h: number = 1080;
     map: number;
-
+    sfx: Phaser.Sound.BaseSound | null = null;
     thisMap: GameObjects.Image;
     constructor ()
     {
@@ -23,7 +23,14 @@ export class Map extends Scene
         console.log('preload Map scene');
     }
     create(){
-        
+        this.sfx = this.sound.add('bg2_maincity');
+        // Enable sound to play when not in active tab
+        this.sound.pauseOnBlur = false;
+        // Loop sfx
+        this.sfx?.play({
+            loop: true,
+            volume: 0.5
+        });
         console.log('create Map scene');
         this.drawBackground();
         this.add.image(this.w/2, this.h/2, 'map_paper').setDisplaySize(this.w, this.h).setAlpha(1);
