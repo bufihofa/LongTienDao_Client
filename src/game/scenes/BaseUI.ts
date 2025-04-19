@@ -11,7 +11,7 @@ export class BaseUI extends Scene
     ui_ink: GameObjects.Image | null = null;
     ui_button: GameObjects.Image[] = [];
 
-    
+    ink: GameObjects.Image | null = null;
 
 
     init(){
@@ -111,31 +111,38 @@ export class BaseUI extends Scene
         }
 
         this.ui_button[1].on('pointerdown', () => {
-            console.log("Map clicked ", -1);
-            this.gameData.currentMap = -1;
-            this.scene.start('BigMap');
+            if(this.gameData.currentMap != -1){
+                console.log("Map clicked ", -1);
+                this.gameData.currentMap = -1;
+                
+                this.scene.start('BigMap');
+            }
         })
 
     }
 
+    
     drawInkTransition(){
         const w = 1050;
         const h = 60;
-        
-        // Create ink element starting from off-screen to the right
-        this.ui_ink = this.add.image(this.w/2, this.h/2, 'ui_ink')
-            .setDisplaySize(this.w*2, this.h*2)
+
+        // start camera fully transparent
+
+        // Create ink element starting from off‑screen to the right
+        this.ink = this.add.image(this.w/1.3, this.h/1.7*(1+Math.random()/10), 'ui_ink')
+            .setDisplaySize(this.w*2.2, this.h*2)
             .setAlpha(1)
             .setDepth(1000);
-        
+
         // Animate the ink flowing from right to left
         this.tweens.add({
-            targets: this.ui_ink,
-            x: -this.w,  // Final position
-            displayWidth: w,  // Final width
-            alpha: 1,       // Final alpha
-            duration: 1200,
-            ease: 'Power2',
+            targets: this.ink!,
+            x: -this.w,           // Final x
+            displayWidth: w,      // Final width
+            duration: 2500,
+            ease: 'Power3',
         });
+        
+        
     }
 }
