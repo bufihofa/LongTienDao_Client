@@ -81,8 +81,8 @@ function App()
     }
 
     return (
-        <div id="app" style={{backgroundImage: 'url(assets/map/paper.png)', backgroundSize: 'cover', height: '100vh'}}>
-            
+        //<div id="app" style={{backgroundImage: 'url(assets/map/paper.png)', backgroundSize: 'cover', height: '100vh'}}>
+        <div id="app">  
             <PhaserGame ref={phaserRef} currentActiveScene={currentScene} />
             
         </div>

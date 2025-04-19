@@ -9,7 +9,7 @@ export class Map extends BaseUI
     w: number = 1920;
     h: number = 1080;
     map: number;
-    sfx: Phaser.Sound.BaseSound | null = null;
+    
 
     thisMap: GameObjects.Image;
     background: GameObjects.Image;
@@ -28,26 +28,30 @@ export class Map extends BaseUI
     create(){
         
 
-        this.sfx = this.sound.add('bg2_maincity');
-        // Enable sound to play when not in active tab
-        this.sound.pauseOnBlur = false;
-        // Loop sfx
-        this.sfx?.play({
-            loop: true,
-            volume: 0.5
-        });
+        //this.background_music = this.sound.add('bg1_login');
+        //this.sound.pauseOnBlur = false;
+        //this.background_music?.play({
+        //    loop: true,
+        //    volume: 0.5
+        //});
         
         console.log('create Map scene');
         this.drawBackground();
-        this.thisMap = this.add.image(this.w/2, this.h/2, `map_map_${this.gameData.currentMap}`).setDisplaySize(this.w, this.h).setAlpha(1);
 
-
+        if(this.gameData.currentMap == 0){
+            this.drawMap0();
+        }
 
         this.drawUI();
         
     }
     drawBackground(){
         this.background = this.add.image(this.w/2, this.h/2, 'map_paper').setDisplaySize(this.w, this.h).setAlpha(1);
+    }
+    drawMap0(){
+        this.thisMap = this.add.image(this.w/2, this.h/2, `map_map_${this.gameData.currentMap}`).setDisplaySize(this.w, this.h).setAlpha(1);
+        this.add.text(this.w/2, this.h/2, 'Hello World', { fontFamily: 'Roboto', fontSize: '32px', color: '#ffffff' });
+
     }
 
 }

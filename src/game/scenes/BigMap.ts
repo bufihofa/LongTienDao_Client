@@ -1,16 +1,16 @@
 import { GameObjects, Scene } from "phaser";
 import Data from "./Data";
 import axios from "axios";
+import { BaseUI } from "./BaseUI";
 
-export class BigMap extends Scene
+export class BigMap extends BaseUI
 {
     background: GameObjects.Image | null;
     w: number = 1920;
     h: number = 1080;
     map: GameObjects.Image[] = [];
-    gameData: Data = Data.getInstance();
+    
     hoving: number = -1;
-    sfx: Phaser.Sound.BaseSound | null = null;
     constructor ()
     {
         super('BigMap');
@@ -22,14 +22,8 @@ export class BigMap extends Scene
         console.log('preload BigMap scene');
     }
     create(){
-        this.sfx = this.sound.add('bg1_login');
-        // Enable sound to play when not in active tab
-        this.sound.pauseOnBlur = false;
-        // Loop sfx
-        this.sfx?.play({
-            loop: true,
-            volume: 0.5
-        });
+        
+        
         
         console.log('create BigMap scene');
         this.background = null;
@@ -40,6 +34,8 @@ export class BigMap extends Scene
         this.drawBackground();
         console.log("RENDER2");
         this.drawMap();
+        this.drawUI();
+        console.log("RENDER3");
     }
 
     drawBackground(){
@@ -63,9 +59,8 @@ export class BigMap extends Scene
         this.map[0].on('pointerdown', async () => {
             console.log("Map clicked ", 0);
             this.gameData.currentMap = 0;
-            this.sfx?.stop();
             console.log("OK");
-            await this.callAPI();
+            //await this.callAPI();
             console.log("OK2");
             this.scene.start('Map');
         });

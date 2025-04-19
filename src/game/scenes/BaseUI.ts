@@ -12,6 +12,8 @@ export class BaseUI extends Scene
     ui_button: GameObjects.Image[] = [];
 
     
+
+
     init(){
         console.log('init Map scene');
         console.log(this.gameData.currentMap);
@@ -24,8 +26,21 @@ export class BaseUI extends Scene
         
     }
     drawUI(){
+
+
+
         this.ui_button = [];
-        //this.drawBackground();
+
+        if(!this.gameData.background_music){
+            this.gameData.background_music = this.sound.add('bg1_login');
+            this.sound.pauseOnBlur = false;
+            this.gameData.background_music?.play({
+                loop: true,
+                volume: 1
+            });
+        }
+
+        this.drawInkTransition();
         this.drawPanel();
         console.log("drawUI");
     }
@@ -95,5 +110,32 @@ export class BaseUI extends Scene
             });
         }
 
+        this.ui_button[1].on('pointerdown', () => {
+            console.log("Map clicked ", -1);
+            this.gameData.currentMap = -1;
+            this.scene.start('BigMap');
+        })
+
+    }
+
+    drawInkTransition(){
+        const w = 1050;
+        const h = 60;
+        
+        // Create ink element starting from off-screen to the right
+        this.ui_ink = this.add.image(this.w/2, this.h/2, 'ui_ink')
+            .setDisplaySize(this.w*2, this.h*2)
+            .setAlpha(1)
+            .setDepth(1000);
+        
+        // Animate the ink flowing from right to left
+        this.tweens.add({
+            targets: this.ui_ink,
+            x: -this.w,  // Final position
+            displayWidth: w,  // Final width
+            alpha: 1,       // Final alpha
+            duration: 1200,
+            ease: 'Power2',
+        });
     }
 }

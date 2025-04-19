@@ -6,7 +6,7 @@ export default class Data {
     dbName: string;
     dbVersion: number;
     currentMap: number;
-    
+    background_music: Phaser.Sound.BaseSound | null = null;
     private constructor() {}
     public static getInstance(): Data {
         if (!Data.instance) {
