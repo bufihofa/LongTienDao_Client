@@ -1,5 +1,6 @@
 import { GameObjects, Scene } from "phaser";
 import Data from "./Data";
+import axios from "axios";
 
 export class BigMap extends Scene
 {
@@ -45,6 +46,11 @@ export class BigMap extends Scene
         this.background = this.add.image(this.w/2, this.h/2, 'map_paper').setDisplaySize(this.w, this.h).setAlpha(1);
         
     }
+    async callAPI(){
+        //using axios to fetch https://catfact.ninja/fact
+        const reponse = await axios.get('https://catfact.ninja/fact');
+        console.log(reponse);
+    }
     drawMap(){
         this.map.push(this.add.image(1500, 300, 'map_0').setScale(0.55));
         //this.map.push(this.add.image(960, 500, 'map_1').setScale(0.55).setAlpha(0.4));
@@ -54,11 +60,14 @@ export class BigMap extends Scene
         this.map[0].setInteractive({ pixelPerfect: true });        
         //this.addHoverEffect(this.map[0], 0, 0.55);
         this.data.set('map2', 32);
-        this.map[0].on('pointerdown', () => {
+        this.map[0].on('pointerdown', async () => {
             console.log("Map clicked ", 0);
             this.gameData.currentMap = 0;
             this.sfx?.stop();
-            this.scene.start('MainMenu');
+            console.log("OK");
+            await this.callAPI();
+            console.log("OK2");
+            this.scene.start('Map');
         });
         this.addHoverEffect(this.map[0], 0, 0.55);
         //this.addHoverEffect(this.map[1], 1, 0.55);

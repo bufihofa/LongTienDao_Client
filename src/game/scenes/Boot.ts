@@ -113,10 +113,28 @@ export class Boot extends Scene
             { key: 'star', file: 'assets/star.png' },
             { key: 'background', file: 'assets/bg_menu.png' },
             { key: 'map_paper', file: 'assets/map/paper.png' },
-            { key: 'map_0', file: 'assets/map/1.png' },
-            { key: 'map_1', file: 'assets/map/2.png' },
-            { key: 'map_2', file: 'assets/map/3.png' },
-            { key: 'map_3', file: 'assets/map/4.png' },
+            { key: 'map_0', file: 'assets/map/0.png' },
+            { key: 'map_1', file: 'assets/map/1.png' },
+            { key: 'map_2', file: 'assets/map/2.png' },
+            { key: 'map_3', file: 'assets/map/3.png' },
+
+            { key: 'map_map_0', file: 'assets/map/map_0.png' },
+            
+            { key: 'ui_ink', file: 'assets/ui/ink.png' },
+
+            { key: 'ui_bando', file: 'assets/ui/bando.png' },
+            { key: 'ui_chieumo', file: 'assets/ui/chieumo.png' },
+            { key: 'ui_congphap', file: 'assets/ui/congphap.png' },
+            { key: 'ui_tuluyen', file: 'assets/ui/tuluyen.png' },
+            { key: 'ui_sukien', file: 'assets/ui/sukien.png' },
+
+            { key: 'ui_nhiemvu', file: 'assets/ui/nhiemvu.png' },
+            { key: 'ui_tongmon', file: 'assets/ui/tongmon.png' },
+            { key: 'ui_phanthuong', file: 'assets/ui/phanthuong.png' },
+            { key: 'ui_thanhtich', file: 'assets/ui/thanhtich.png' },
+            { key: 'ui_tree', file: 'assets/ui/tree.png' },
+
+
         ];
 
         for(let i = 1; i <= 20; i++){

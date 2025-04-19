@@ -7,6 +7,7 @@ import { Preloader } from './scenes/Preloader';
 import { PreloaderNext } from './scenes/PreloaderNext';
 import { BigMap } from './scenes/BigMap';
 import { Map } from './scenes/Map';
+import { BaseUI } from './scenes/BaseUI';
 //  Find out more information about the Game Config at:
 //  https://newdocs.phaser.io/docs/3.70.0/Phaser.Types.Core.GameConfig
 const config: Phaser.Types.Core.GameConfig = {
@@ -20,10 +21,9 @@ const config: Phaser.Types.Core.GameConfig = {
         width: 1920,
         height: 1080,
         min: {
-            width: 960,
-            height: 540
+            width: 192,
+            height: 108
         },
-        
     },
     parent: 'game-container',
     backgroundColor: '#028af8',
@@ -35,7 +35,8 @@ const config: Phaser.Types.Core.GameConfig = {
         GameOver,
         PreloaderNext,
         BigMap,
-        Map
+        Map,
+        BaseUI
     ]
 };
 
