@@ -5,7 +5,10 @@ export default class Data {
     db: IDBDatabase | null;
     dbName: string;
     dbVersion: number;
+    
     currentMap: number;
+    currentScene: string;
+
     background_music: Phaser.Sound.BaseSound | null = null;
     private constructor() {}
     public static getInstance(): Data {

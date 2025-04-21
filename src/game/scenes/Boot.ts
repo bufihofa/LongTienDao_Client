@@ -134,7 +134,14 @@ export class Boot extends Scene
             { key: 'ui_thanhtich', file: 'assets/ui/thanhtich.png' },
             { key: 'ui_tree', file: 'assets/ui/tree.png' },
 
-
+            { key: 'card_pick', file: 'assets/card/pick.png' },
+            { key: 'card_0', file: 'assets/card/0.png' },
+            { key: 'card_1', file: 'assets/card/1.png' },
+            { key: 'card_2', file: 'assets/card/2.png' },
+            { key: 'card_3', file: 'assets/card/3.png' },
+            { key: 'card_4', file: 'assets/card/4.png' },
+            { key: 'card_5', file: 'assets/card/5.png' },
+            { key: 'card_6', file: 'assets/card/6.png' },
         ];
 
         for(let i = 1; i <= 20; i++){

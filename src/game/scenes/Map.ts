@@ -14,6 +14,7 @@ export class Map extends BaseUI
     thisMap: GameObjects.Image;
     background: GameObjects.Image;
 
+    
     constructor ()
     {
         super('Map');
@@ -51,7 +52,6 @@ export class Map extends BaseUI
     drawMap0(){
         this.thisMap = this.add.image(this.w/2, this.h/2, `map_map_${this.gameData.currentMap}`).setDisplaySize(this.w, this.h).setAlpha(1);
         this.add.text(this.w/2, this.h/2, 'Hello World', { fontFamily: 'Roboto', fontSize: '32px', color: '#ffffff' });
-
     }
-
+    
 }

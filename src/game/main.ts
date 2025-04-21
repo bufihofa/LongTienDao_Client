@@ -8,6 +8,7 @@ import { PreloaderNext } from './scenes/PreloaderNext';
 import { BigMap } from './scenes/BigMap';
 import { Map } from './scenes/Map';
 import { BaseUI } from './scenes/BaseUI';
+import { ChieuMo } from './scenes/ChieuMo';
 //  Find out more information about the Game Config at:
 //  https://newdocs.phaser.io/docs/3.70.0/Phaser.Types.Core.GameConfig
 const config: Phaser.Types.Core.GameConfig = {
@@ -36,7 +37,8 @@ const config: Phaser.Types.Core.GameConfig = {
         PreloaderNext,
         BigMap,
         Map,
-        BaseUI
+        BaseUI,
+        ChieuMo
     ]
 };
 
