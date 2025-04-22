@@ -144,7 +144,7 @@ export class Boot extends Scene
             { key: 'card_6', file: 'assets/card/6.png' },
         ];
 
-        for(let i = 1; i <= 20; i++){
+        for(let i = 0; i <= 40; i++){
             images.push({ key: `agent_${i}`, file: `assets/agent/${i}.png` });
         }
 
