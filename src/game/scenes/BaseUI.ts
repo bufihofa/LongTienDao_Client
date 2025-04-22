@@ -40,7 +40,7 @@ export class BaseUI extends Scene
             });
         }
 
-        //this.drawInkTransition();
+        this.drawInkTransition();
         this.drawPanel();
         console.log("drawUI");
     }

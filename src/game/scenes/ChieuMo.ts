@@ -60,11 +60,17 @@ export class ChieuMo extends BaseUI
         this.thisMap = this.add.image(this.w/2, this.h/2, `map_map_${this.gameData.currentMap}`).setDisplaySize(this.w, this.h).setAlpha(1);
         this.add.text(this.w/2, this.h/2, 'Hello World', { fontFamily: 'Roboto', fontSize: '32px', color: '#ffffff' });
     }
+    autoPickAll() {
+        this.cardPick.forEach(card => {
+             card.emit('pointerdown');
+        });
+    }
     getCardPick(soluong: number){
         if(this.isDrawing) {
+            this.autoPickAll();
             return;
         }
-        this.button.setAlpha(0);
+        //this.button.setAlpha(0);
 
         this.isDrawing = true;
         this.numberPicked = 0;
@@ -73,6 +79,10 @@ export class ChieuMo extends BaseUI
         this.randCard = [0, 0, 1, 1, 2, 3, 4, 5, 6];
         
         this.drawCardPick(soluong);
+        const delay = 200 + 200 * soluong;
+        this.time.delayedCall(delay, () => {
+            //this.autoPickAll();
+        });
     }
 
     private clearAllCards() {
@@ -191,6 +201,9 @@ export class ChieuMo extends BaseUI
                     this.maxNumberPicked = 0;
                     this.button.setAlpha(1);
                 }
+                this.cardPicked[id].setInteractive();
+                this.cardPicked[id].on('pointerover',  () => this.hoverEffect(this.cardPicked[id], 1.07, 250));
+                this.cardPicked[id].on('pointerout',   () => this.hoverEffect(this.cardPicked[id], 1,  350));
             }
         });
 
