@@ -59,6 +59,7 @@ export class BigMap extends BaseUI
         this.map[0].on('pointerdown', async () => {
             console.log("Map clicked ", 0);
             this.gameData.currentMap = 0;
+            this.gameData.currentScene = 'Map';
             console.log("OK");
             //await this.callAPI();
             console.log("OK2");

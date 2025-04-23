@@ -142,8 +142,14 @@ export class Boot extends Scene
             { key: 'card_4', file: 'assets/card/4.png' },
             { key: 'card_5', file: 'assets/card/5.png' },
             { key: 'card_6', file: 'assets/card/6.png' },
-        ];
 
+
+        ];
+        for(let i = 0; i <= 3; i++){
+            for(let j = 0; j <= 2; j++){
+                images.push({ key: `building_map${i}_${j}`, file: `assets/building/map${i}_${j}.png` });
+            }
+        }
         for(let i = 0; i <= 40; i++){
             images.push({ key: `agent_${i}`, file: `assets/agent/${i}.png` });
         }

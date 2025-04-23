@@ -40,7 +40,7 @@ export class BaseUI extends Scene
             });
         }
 
-        this.drawInkTransition();
+        //this.drawInkTransition();
         this.drawPanel();
         console.log("drawUI");
     }
@@ -110,24 +110,19 @@ export class BaseUI extends Scene
             });
         }
 
-        this.ui_button[1].on('pointerdown', () => {
-            if(this.gameData.currentScene != "BigMap"){
-                this.gameData.currentScene = "BigMap";
-                this.scene.start('BigMap');
-            }
-        })
+        this.addClickEvent(this.ui_button[1], 'BigMap');
+        this.addClickEvent(this.ui_button[2], 'ChieuMo');
 
-        this.ui_button[2].on('pointerdown', () => {
-            if(this.gameData.currentScene != "ChieuMo"){
-                this.gameData.currentScene = "ChieuMo";
-                this.scene.start('ChieuMo');
+    }
+    addClickEvent(button: GameObjects.Image, scene: string){
+        button.on('pointerdown', () => {
+            if(this.gameData.currentScene != scene){
+                this.gameData.currentScene = scene;
+                this.scene.start(scene);
             }
-            
-            
         })
 
     }
-
     
     drawInkTransition(){
         const w = 1050;
@@ -149,7 +144,6 @@ export class BaseUI extends Scene
             duration: 2500,
             ease: 'Power3',
         });
-        
-        
     }
+    
 }
